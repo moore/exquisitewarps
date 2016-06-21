@@ -9,46 +9,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
-<dom-module id="my-help">
+<dom-module id="my-past-warps">
 
   <template>
+  <paper-button raised>test</paper-button>
+  <script src='../node_modules/spectrum-colorpicker/spectrum.js'></script>
+  <link rel='stylesheet' href='../node_modules/spectrum-colorpicker/spectrum.css'>
 
-    <style>
-      :host {
-        display: block;
-        padding: 10px;
-      }
-      .card {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        margin: 24px;
-        border-radius: 5px;
-        background-color: #fff;
-        color: #757575;
-      }
-      h1 {
-        font-size: 22px;
-        margin: 16px 0;
-        color: #212121;
-      }
-    </style>
+  <input id='colorpicker' />
 
-    <div class="card">
-      <h1>Help</h1>
-      <p>not yet.</p>
-    </div>
-
+  <script>
+      $("#colorpicker").spectrum({
+          color: "#f00"
+      });
+  </script>
   </template>
 
   <script>
 
     Polymer({
 
-      is: 'my-help'
+      is: 'my-past-warps'
 
     });
-
   </script>
 
 </dom-module>

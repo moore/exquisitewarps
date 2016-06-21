@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="warps-in-progress" href="/warps-in-progress">warps in progress</a>
           <a name="past-warps" href="/past-warps">past warps</a>
           <a name="new-warp" href="/new-warp">new warp</a>
-          <a name="help" href="/help">help</a>
+          <a name="about" href="/about">about</a>
         </iron-selector>
       </app-drawer>
 
@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-warps-in-progress name="warps-in-progress"></my-warps-in-progress>
           <my-past-warps name="past-warps"></my-past-warps>
           <my-new-warp name="new-warp"></my-new-warp>
-          <my-help name="help"></my-help>
+          <my-about name="about"></my-about>
         </iron-pages>
 
       </app-header-layout>
@@ -126,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'help';
+        this.page = page || 'about';
       },
 
       _pageChanged: function(page) {
