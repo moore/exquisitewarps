@@ -1,0 +1,73 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="my-warp-preview">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        padding: 10px;
+      }
+      #warp-preview {
+          width: 100%;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 16px 0;
+        color: #212121;
+      }
+      paper-progress {
+        --paper-progress-active-color: #dab10b;
+      }
+      paper-button {
+          color: #608613;
+      }
+    </style>
+
+    <paper-card id="warp-preview">
+      <div class="card-content">
+          <h1>[[title]]</h1>
+          <paper-progress value="7" max="12"></paper-progress>
+          <p>[[weaverList]]</p>
+          <template>
+          </template>
+      </div>
+      <div class="card-actions">
+          <a href="/warp-editor/[[warpID]]"><paper-button>DESIGN</paper-button></a>
+      </div>
+    </paper-card>
+
+  </template>
+
+  <script>
+
+    MyWarpPreview = Polymer({
+
+        is: 'my-warp-preview',
+        properties: {
+
+           weaverList: {
+               type: String,
+               computed: 'computeWeaverList(weavers)',
+           },
+
+        },
+
+        computeWeaverList: function(weavers) {
+            return weavers.join(', ');
+        },
+
+        factoryImpl: function(model) {
+            this.title = model.title;
+            this.weavers= model.weavers;
+            this.warpID = model.id;
+        }
+    });
+
+  </script>
+
+</dom-module>

@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="warp-canvas">
+
+  <template>
+
+    <style>
+        #warp-canvas {
+            width: [[totalEnds]]px;
+            height: 100px;
+        } 
+        paper-progress {
+            width: [[totalEnds]]px;
+            --paper-progress-active-color: black;
+        }
+    </style>
+
+    <paper-card>
+        <div id="warp-canvas"></div>
+        <paper-progress value="[[staticEnds]]" max="[[totalEnds]]"></paper-progress>
+    </paper-card>
+  </template>
+
+  <script>
+
+    Polymer({
+
+        is: 'warp-canvas',
+        properties: {
+
+            totalEnds: {
+                type: Number,
+                value: "100",
+            },
+
+            staticEnds: {
+                type: Number,
+                value: "20",
+            }
+
+        },
+    });
+
+  </script>
+
+</dom-module>
