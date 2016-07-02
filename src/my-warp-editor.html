@@ -1,0 +1,70 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-swatch-picker/paper-swatch-picker.html">
+<link rel="import" href="my-warp-preview.html">
+<link rel="import" href="palette-swatch.html">
+<link rel="import" href="warp-canvas.html">
+
+<dom-module id="my-warp-editor">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        padding: 10px;
+      }
+      #warp-canvas {
+          width: 400px;
+          height: 100px;
+      }
+      #warp-palette {
+          margin-top: 5px;
+          overflow: hidden;
+      }
+      #static-palette {
+          border: 1px solid black;
+          width: 180px;
+          height: 30px;
+          display: inline-block;
+      }
+      #chosen-palette {
+          border: 1px solid #999999;
+          display: inline-block;
+      }
+      paper-swatch-picker {
+          --paper-swatch-picker-color-size: 30px;
+          height: 30px;
+          width: 30px;
+      }
+      paper-swatch-picker paper-menu-button#menu {
+          padding: 0px;
+      }
+    </style>
+
+    <warp-canvas total-ends=400 static-ends=50></warp-canvas>
+
+    <div id="warp-palette">
+        <palette-swatch swatch-color="red"></palette-swatch>
+        <palette-swatch swatch-color="#ffffff"></palette-swatch>
+        <palette-swatch swatch-color="#ab68f4" mutable></palette-swatch>
+        <palette-swatch swatch-color="#00009f"></palette-swatch>
+        <palette-swatch swatch-color="#abcdef"></palette-swatch>
+        <palette-swatch swatch-color="#fedcba"></palette-swatch>
+    </div>
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'my-warp-editor',
+
+      ready: function () {
+          this.id = 1;
+          this.palette = stubModel[this.id].palette;
+      }
+    });
+
+  </script>
+
+</dom-module>

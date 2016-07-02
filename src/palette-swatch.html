@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="palette-swatch">
+
+  <template>
+
+    <style>
+        #palette-swatch {
+            width: 30px;
+            height: 30px;
+            background-color: [[swatchColor]];
+        } 
+        #swatch-wrapper {
+            float: left;
+        }
+    </style>
+
+    <div id="swatch-wrapper">
+        <div id="palette-swatch"></div>
+        <template is="dom-if" if=[[mutable]]>
+        <paper-swatch-picker></paper-swatch-picker>
+        </template>
+    </div>
+  </template>
+
+  <script>
+
+    Polymer({
+
+        is: 'palette-swatch',
+        properties: {
+
+            swatchColor: {
+                type: String,
+                value: "aqua",
+            },
+            mutable: {
+                type: Boolean,
+                value: false,
+            }
+
+        },
+    });
+
+  </script>
+
+</dom-module>

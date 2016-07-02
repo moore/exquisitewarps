@@ -10,9 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 
 <dom-module id="my-new-warp">
@@ -32,25 +34,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #fff;
         color: #757575;
       }
+      paper-card {
+          width: 100%;
+      }
       h1 {
         font-size: 22px;
-        margin: 16px 0;
         color: #212121;
       }
     </style>
 
-    <div class="card">
-      <h1>New Exquisite Warp</h1>
-      <form is="iron-form" method="get" action="/" id="generate">
-          <paper-input label="warp name" name="warp-name"></paper-input>
-          <label>how many exquisite weavers?</label>
-          <paper-radio-group selected="4">
-            <paper-radio-button name="3">3</paper-radio-button>
-            <paper-radio-button name="4">4</paper-radio-button>
-          </paper-radio-group>
-          <paper-button raised onclick="_submit(event)">Generate</paper-button>
-      </form>
-    </div>
+    <!--    <div class="card">  -->
+          <form is="iron-form" method="get" action="/" id="generate">
+      <paper-card>
+        <div class="card-content">
+
+              <paper-input label="warp name" name="warp-name"></paper-input>
+
+              <label>how many exquisite weavers?</label>
+              <paper-radio-group selected="4">
+                <paper-radio-button name="3">3</paper-radio-button>
+                <paper-radio-button name="4">4</paper-radio-button>
+              </paper-radio-group>
+              <div>maximum colors per warp:</div>
+              <paper-slider snaps editable min="2" max="20" value="12"></paper-slider>
+          </div>
+          <div class="card-actions">
+
+              <paper-button onclick="_submit(event)">Generate</paper-button>
+        </div>
+      </paper-card>
+          </form>
 
   </template>
 

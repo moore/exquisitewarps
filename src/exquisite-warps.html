@@ -22,6 +22,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="my-icons.html">
 
+<script>
+    var stubModel = [
+        {
+            id: 1,
+            title: "a string of ice and fire",
+            weavers: ["Arya", "Bodric", "Cersei", "Davos"],
+            ends: 3200,
+            currentTurn: 7,
+            maxPalette: 12,
+            palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
+        }, 
+        {
+            id: 2,
+            title: "Moores",
+            weavers: ["Jonathan", "Bella", "Ali", "Lyra", "Hazel"],
+            ends: 3200,
+            currentTurn: 7,
+            maxPalette: 12,
+            palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
+        }, 
+    ];
+</script>
+
 <dom-module id="exquisite-warps">
 
   <template>
@@ -98,6 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-past-warps name="past-warps"></my-past-warps>
           <my-new-warp name="new-warp"></my-new-warp>
           <my-about name="about"></my-about>
+          <my-warp-editor name="warp-editor" model="[[model]]"></my-warp-editor>
         </iron-pages>
 
       </app-header-layout>
@@ -119,6 +143,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+
+        model: {
+            type: Object,
+            value: stubModel,
+        }
 
       },
 
