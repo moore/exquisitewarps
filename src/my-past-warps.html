@@ -10,21 +10,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-swatch-picker/paper-swatch-picker.html">
 
 <dom-module id="my-past-warps">
 
   <template>
   <paper-button raised>test</paper-button>
-  <script src='../node_modules/spectrum-colorpicker/spectrum.js'></script>
-  <link rel='stylesheet' href='../node_modules/spectrum-colorpicker/spectrum.css'>
-
-  <input id='colorpicker' />
-
-  <script>
-      $("#colorpicker").spectrum({
-          color: "#f00"
-      });
-  </script>
+  <paper-swatch-picker column-count=5 color-list='["#65a5f2", "#83be54", "#f0d551", "#e5943c", "#a96ddb", "#15a5f2", "#13be54", "#10d551", "#15943c", "#196ddb"]'></paper-swatch-picker>
   </template>
 
   <script>
