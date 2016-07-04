@@ -1,12 +1,3 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
@@ -22,8 +13,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="my-icons.html">
 
+<script src="../../node_modules/redux/dist/redux.js"></script>
+<link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+
 <script>
-    var stubModel = [
+  var stubModel = {
+  warps : [
         {
             id: 1,
             title: "a string of ice and fire",
@@ -42,7 +37,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             maxPalette: 12,
             palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
         }, 
-    ];
+    ] };
+
+  var store = Redux.createStore(function(state, action) {
+      if ( state == undefined)
+          return stubModel;
+
+      switch ( action.type ) {
+      case 'ADD_WARP':
+          console.log( "ADD_WARP", action ); //BOOG
+          var id = state.id + 1;
+          state.id = id;
+          state.warps.push(
+              {
+                  id: id,
+                  title: action.title,
+                  weavers: [],
+                  ends: [],
+                  currentTurn: 0,
+                  maxPalette: action.maxPalette,
+                  palette: [],
+              }
+          )
+          break;
+      }
+
+      
+      return state;
+    });
+
+  var ReduxBehavior = new PolymerRedux(store);
+  
 </script>
 
 <dom-module id="exquisite-warps">
@@ -121,7 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-past-warps name="past-warps"></my-past-warps>
           <my-new-warp name="new-warp"></my-new-warp>
           <my-about name="about"></my-about>
-          <my-warp-editor name="warp-editor" model="[[model]]"></my-warp-editor>
+          <my-warp-editor name="warp-editor"></my-warp-editor>
         </iron-pages>
 
       </app-header-layout>
@@ -131,10 +156,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-
+    
     Polymer({
 
       is: 'exquisite-warps',
+      behaviors: [ ReduxBehavior ],
 
       properties: {
 
@@ -145,8 +171,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
 
         model: {
-            type: Object,
-            value: stubModel,
+            type: Array,
+            statePath: 'warps',
         }
 
       },

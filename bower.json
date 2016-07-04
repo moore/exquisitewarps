@@ -26,7 +26,8 @@
     "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.11",
     "paper-card": "PolymerElements/paper-card#^1.1.1",
     "paper-slider": "PolymerElements/paper-slider#^1.0.11",
-    "paper-swatch-picker": "^1.0.1"
+    "paper-swatch-picker": "^1.0.1",
+    "polymer-redux": "tur-nr/polymer-redux"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
