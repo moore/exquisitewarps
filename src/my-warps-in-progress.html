@@ -12,8 +12,9 @@
       }
     </style>
 
-    <div id="warp-list">
-    </div>
+    <template is="dom-repeat" items="[[warps]]">
+      <my-warp-preview warp="[[item]]"></my-warp-preview>
+    </template>
 
   </template>
 
@@ -21,18 +22,16 @@
 
     Polymer({
 
-      is: 'my-warps-in-progress',
+    is: 'my-warps-in-progress',
+    behaviors: [ ReduxBehavior ],
 
+      properties: {
 
-      ready: function () {
-
-          for (var i = 0; i < stubModel.length; i++) {
-              var preview = new MyWarpPreview(stubModel[i]);
-
-              this.$["warp-list"].appendChild(preview);    
-          }
-
-      }
+        warps: {
+            type: Array,
+            statePath: 'warps',
+        }
+     },
     });
 
   </script>

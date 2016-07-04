@@ -58,10 +58,19 @@
     Polymer({
 
       is: 'my-warp-editor',
+      behaviors: [ ReduxBehavior ],
 
       ready: function () {
           this.id = 1;
-          this.palette = stubModel[this.id].palette;
+          this.palette = this.warps[this.id].palette;
+      },
+
+      properties: {
+
+        warps: {
+          type: Array,
+          statePath: 'warps',
+       },
       }
     });
 
