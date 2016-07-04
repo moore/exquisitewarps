@@ -19,7 +19,7 @@
 
 <script>
     var stubModel = {
-        id : 2,
+        lastWarpId : 2,
         warps : [
             {
                 id: 1,
@@ -52,11 +52,11 @@
       switch ( action.type ) {
       case 'ADD_WARP':
           console.log( "ADD_WARP", action ); //BOOG
-          var id = state.id + 1;
-          state.set( 'id', id );
+          var nextId = state.lastWarpId + 1;
+          state = state.set( 'lastWarpId', nextId );
           state.warps.push(
               {
-                  id: id,
+                  id: nextId,
                   title: action.title,
                   weavers: [],
                   ends: [],
