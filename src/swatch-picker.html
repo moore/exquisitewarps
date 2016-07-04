@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
+
+<dom-module id="swatch-picker">
+
+  <template>
+
+    <style>
+        #swatch-picker {
+            width: 30px;
+            height: 30px;
+        } 
+        .edit-swatch {
+            --iron-icon-height: 20px;
+            --iron-icon-width: 20px;
+        }
+    </style>
+
+    <div id="swatch-picker">
+        <iron-icon class="edit-swatch" icon="editor:mode-edit"></iron-icon>
+    </div>
+  </template>
+
+  <script>
+
+    Polymer({
+
+        is: 'swatch-picker',
+        properties: {
+
+            colorList: {
+                type: Array,
+                value: [
+                    "red",
+                    "orange",
+                    "yellow",
+                    "green",
+                    "blue",
+                    "purple",
+                ],
+            },
+
+        },
+    });
+
+  </script>
+
+</dom-module>
