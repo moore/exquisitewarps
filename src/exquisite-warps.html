@@ -14,7 +14,7 @@
 <link rel="import" href="my-icons.html">
 
 <script src="../../node_modules/redux/dist/redux.js"></script>
-<script src="../../node_modules/immutable/dist/immutable.min.js"></script>
+<script src="../../node_modules/freezer-js/build/freezer.min.js"></script>
 <link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
 
 <script>
@@ -41,15 +41,19 @@
             }, 
         ] };
 
-  var store = Redux.createStore(function(state, action) {
-      if ( state == undefined)
-          return stubModel;
 
+  var frozen = new Freezer( stubModel );
+
+  var store = Redux.createStore(function(state, action) {
+
+      if ( state == undefined )
+          state = frozen.get();
+      
       switch ( action.type ) {
       case 'ADD_WARP':
           console.log( "ADD_WARP", action ); //BOOG
           var id = state.id + 1;
-          state.id = id;
+          state.set( 'id', id );
           state.warps.push(
               {
                   id: id,
@@ -64,8 +68,7 @@
           break;
       }
 
-      
-      return state;
+      return frozen.get();
     });
 
   var ReduxBehavior = new PolymerRedux(store);
