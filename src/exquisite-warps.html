@@ -14,30 +14,32 @@
 <link rel="import" href="my-icons.html">
 
 <script src="../../node_modules/redux/dist/redux.js"></script>
+<script src="../../node_modules/immutable/dist/immutable.min.js"></script>
 <link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
 
 <script>
-  var stubModel = {
-  warps : [
-        {
-            id: 1,
-            title: "a string of ice and fire",
-            weavers: ["Arya", "Bodric", "Cersei", "Davos"],
-            ends: 3200,
-            currentTurn: 7,
-            maxPalette: 12,
-            palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
-        }, 
-        {
-            id: 2,
-            title: "Moores",
-            weavers: ["Jonathan", "Bella", "Ali", "Lyra", "Hazel"],
-            ends: 3200,
-            currentTurn: 7,
-            maxPalette: 12,
-            palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
-        }, 
-    ] };
+    var stubModel = {
+        id : 2,
+        warps : [
+            {
+                id: 1,
+                title: "a string of ice and fire",
+                weavers: ["Arya", "Bodric", "Cersei", "Davos"],
+                ends: 3200,
+                currentTurn: 7,
+                maxPalette: 12,
+                palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
+            }, 
+            {
+                id: 2,
+                title: "Moores",
+                weavers: ["Jonathan", "Bella", "Ali", "Lyra", "Hazel"],
+                ends: 3200,
+                currentTurn: 7,
+                maxPalette: 12,
+                palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
+            }, 
+        ] };
 
   var store = Redux.createStore(function(state, action) {
       if ( state == undefined)
