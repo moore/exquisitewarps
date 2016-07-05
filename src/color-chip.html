@@ -1,0 +1,55 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="color-chip">
+
+  <template>
+
+    <style>
+        .color-chip {
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+    </style>
+
+    <div class="color-chip" style="background-color: [[color]]" on-click="setColor"></div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+        is: 'color-chip',
+        properties: {
+           color: {
+                type: String,
+                default: "#999999",
+           },
+           warpId: {
+               type: String,
+           },
+           paletteIndex: {
+               type: String,
+           },
+        },
+        behaviors: [ReduxBehavior],
+        actions: {
+            set: function (color, warpId, paletteIndex) {
+                return {
+                    type: "SET_COLOR",
+                    color: color,
+                    warpId: warpId,
+                    paletteIndex: paletteIndex,
+                }
+            }
+        },
+        setColor: function () {
+            console.log("warpId %s, paletteIndex %s", this.warpId, this.paletteIndex, this);
+            this.dispatch('set', this.color, this.warpId, this.paletteIndex);
+        },
+    });
+
+  </script>
+
+</dom-module>
