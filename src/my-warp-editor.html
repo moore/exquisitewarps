@@ -63,17 +63,24 @@
       is: 'my-warp-editor',
       behaviors: [ ReduxBehavior ],
 
-      ready: function () {
-          this.id = 1;
-          this.palette = this.warps[this.id].palette;
-      },
-
       properties: {
 
-        warps: {
+       currentWarps: {
           type: Array,
-          statePath: 'warps',
+          statePath: 'currentWarps',
        },
+       warpId: Number,
+       palette: {
+           type: Array,
+           computed: 'fetchPalette(warpId, currentWarps)',
+       }
+
+      },
+
+      fetchPalette: function(warpId, currentWarps) {
+          var warp = currentWarps[warpId];
+          var currentTurn = warp.currentTurn;
+          return warp.subWarps[currentTurn.subWarp].palette;
       }
     });
 

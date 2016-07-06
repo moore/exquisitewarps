@@ -20,9 +20,9 @@
 <script>
     var stubModel = {
         lastWarpId : 2,
-        warps : [
+        currentWarps : [
             {
-                id: 1,
+                id: 0,
                 title: "a string of ice and fire",
                 weavers: ["Arya", "Bodric", "Cersei", "Davos"],
                 ends: 3200,
@@ -31,7 +31,7 @@
                 palette: ["#FFFFFF", "#dab10b", "#608613", "#212121", "#000000"],
             }, 
             {
-                id: 2,
+                id: 1,
                 title: "Moore Kids",
                 weavers: ["Bella", "Lyra", "Hazel"],
                 ends: [42, 52, 23],
@@ -55,7 +55,10 @@
                     ],
                 }, 
                 ],
-                currentTurn: 6,
+                currentTurn: {
+                    subWarp: 1,
+                    round: 1,
+                },
             }, 
         ] };
 
@@ -72,7 +75,7 @@
       case 'ADD_WARP':
           var nextId = state.lastWarpId + 1;
           state = state.set( 'lastWarpId', nextId );
-          state.warps.push(
+          state.pendingWarps.push(
               {
                   id: nextId,
                   title: action.title,
@@ -85,7 +88,7 @@
           )
           break;
       case 'SET_COLOR':
-          state.warps[action.warpId].palette.set(action.paletteId, action.color);
+          state.currentWarps[action.warpId].palette.set(action.paletteId, action.color);
           break;
       }
 
@@ -142,8 +145,12 @@
         route="{{route}}"
         pattern="/:page"
         data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
-
+        tail="{{subroute}}"> </app-route>
+    <app-route
+        route="{{route}}"
+        pattern="/warp-editor/:id"
+        data="{{warp-to-edit}}"></app-route>
+        
     <app-drawer-layout fullbleed>
 
       <!-- Drawer content -->
@@ -174,7 +181,7 @@
           <my-past-warps name="past-warps"></my-past-warps>
           <my-new-warp name="new-warp"></my-new-warp>
           <my-about name="about"></my-about>
-          <my-warp-editor name="warp-editor"></my-warp-editor>
+          <my-warp-editor name="warp-editor" warp-id="{{warp-to-edit.id}}"></my-warp-editor>
         </iron-pages>
 
       </app-header-layout>
@@ -200,7 +207,7 @@
 
         model: {
             type: Array,
-            statePath: 'warps',
+            statePath: 'currentWarps',
         }
 
       },
