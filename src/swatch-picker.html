@@ -1,5 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="./color-chip.html">
 
 <dom-module id="swatch-picker">
 
@@ -14,15 +17,37 @@
             --iron-icon-width: 20px;
             padding: 0 5px;
         }
+        #color-options-wrapper {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            max-width: 300px;
+        }
+        .color-chip {
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
     </style>
 
     <div id="swatch-picker">
-        <iron-icon class="edit-swatch" icon="editor:mode-edit"></iron-icon>
+        <iron-icon class="edit-swatch" icon="editor:mode-edit" on-tap="showPalette"></iron-icon>
     </div>
+    <paper-dialog id="color-options" alwaysOnTop>
+    <!--    <paper-dialog id="color-options" horizontal-align=left vertical-align=top> -->
+    <div id="color-options-wrapper">
+        <template is="dom-repeat" items="[[colorList]]">
+        <color-chip color="[[item]]" warp-id=1 palette-index=1></color-chip>
+        </template>
+    </div>
+    </paper-dialog>
   </template>
 
   <script>
 
+      var mbColors = [
+      "#e4e6d8", "#e7e8c9", "#dcd4af", "#d5c995", "#c29d69", "#c8946c", "#a29573", "#906c3d", "#724b24", "#623224", "#423525", "#c69d5d", "#dbba77", "#d39938", "#dbbd7d", "#d69f2a", "#e2c13c", "#d1ca72", "#df7f43", "#d56300", "#d27822", "#c04613", "#b0421d", "#92352d", "#c30b0d", "#bd0102", "#9e3049", "#64191d", "#763032", "#9d293c", "#ad5d66", "#bc5256", "#df8773", "#e3b993", "#cfbeac", "#d7a7a3", "#dc5c75", "#b72d69", "#2d1827", "#74385e", "#893b79", "#7f565e", "#ab4e83", "#a8899b", "#9b9094", "#6274a2", "#312726", "#8e847a", "#918c79", "#a5a99b", "#94acac", "#95bbc4", "#87a2a9", "#709293", "#397486", "#476cc5", "#1f4991", "#4b6b78", "#3b647a", "#41496d", "#353a4d", "#0686a3", "#00899c", "#37ae98", "#07978d", "#759e98", "#9ebb9d", "#aeb581", "#ccd872", "#9a9949", "#6f8545", "#8c8056", "#857f4b", "#756a4c", "#557840", "#38634f", "#1b9a65", "#1a9463", "#559269", "#98d7ba"
+      ];
     Polymer({
 
         is: 'swatch-picker',
@@ -30,16 +55,15 @@
 
             colorList: {
                 type: Array,
-                value: [
-                    "red",
-                    "orange",
-                    "yellow",
-                    "green",
-                    "blue",
-                    "purple",
-                ],
+                value: mbColors,
             },
 
+        },
+        showPalette: function () {
+            this.$['color-options'].open();
+        },
+        setColor: function (event) {
+            console.log(event.detail);
         },
     });
 

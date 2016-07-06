@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="my-warp-preview.html">
+
+<dom-module id="my-warps-in-progress">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        padding: 10px;
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[warps]]">
+      <my-warp-preview warp="[[item]]"></my-warp-preview>
+    </template>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+    is: 'my-warps-in-progress',
+    behaviors: [ ReduxBehavior ],
+
+      properties: {
+
+        warps: {
+            type: Array,
+            statePath: 'warps',
+        }
+     },
+    });
+
+  </script>
+
+</dom-module>
